@@ -1,0 +1,35 @@
+using System;
+
+public class MoveZeroesToTheEnd
+{
+    public static void Main(string[] args)
+    {
+        int[] arr = new int[5];
+        
+        Console.WriteLine("Enter the input ");
+        for(int iv = 0; iv<arr.Length; iv++)
+        {
+                arr[iv] = int.Parse(Console.ReadLine());
+        }
+        
+        int i = 0, ph = 0;
+        
+        while(i < arr.Length)
+        {
+            if(arr[i] != 0)
+            {
+                arr[ph] = arr[i];
+                ph++;
+            }
+            i++;
+        }
+        
+        for(int val = ph; val < arr.Length; val++ )
+            arr[val] = 0;
+        
+        Console.WriteLine("The output for entered values ");
+        
+        foreach(int v in arr)
+            Console.WriteLine(v);
+    }
+}
