@@ -1,0 +1,30 @@
+using System;
+
+public class SubArraysGreaterThanX
+{
+    public static void Main(string[] args)
+    {
+        int[] nums = {2,1,5,1,3,2};
+        
+        int k =3, left = 0, winSumCount = 0, x =7 , totalCount = 0;
+         
+        for(int right = 0 ; right < nums.Length; right++)
+        {
+            winSumCount = winSumCount + nums[right];
+            
+            if(right - left +1 == k)
+            {
+               if(winSumCount > x)
+               {
+                    totalCount++;
+               }    
+                
+                winSumCount = winSumCount - nums[left];
+                
+                left++;
+            }
+        }
+        
+        Console.WriteLine(totalCount);
+    }
+}
