@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+public class MaxVowelsInString
+{
+    public static bool isVowel(char c)
+    {
+        c = char.ToLower(c);
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c =='u';
+    }
+    
+    public static void Main(string[] args)
+    {
+        string val = "aabciiiidef";
+        int k =3, left = 0, maxVowelCount = 0, winVowelCount = 0;
+         
+        for(int right = 0 ; right < val.Length; right++)
+        {
+            if(isVowel(val[right]))
+                winVowelCount++;
+            
+            if(right - left +1 == k)
+            {
+               
+                maxVowelCount = Math.Max(maxVowelCount, winVowelCount);
+                
+                if(isVowel(val[left]))
+                    winVowelCount --;
+                
+                left++;
+            }
+        }
+        
+        Console.WriteLine(maxVowelCount);
+    }
+}
