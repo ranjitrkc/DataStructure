@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+public class MaxVowelsInString
+{
+    public static void Main(string[] args)
+    {
+        string val = "aabciiiidef";
+        int k =3, left = 0, maxsum = 0, winsum = 0;
+        
+        Queue<char> vowels = new Queue<char>();
+        for(int right = 0 ; right < val.Length; right++)
+        {
+            if((char.ToLower(val[right]) == 'a' ) || ( char.ToLower(val[right]) == 'e' ) || (char.ToLower(val[right]) == 'i' ) || (char.ToLower(val[right]) == 'o' ) || (char.ToLower(val[right]) == 'u' ))
+                vowels.Enqueue(char.ToLower(val[right]));
+                
+            if(right - left +1 == k)
+            {
+                winsum = vowels.Count;
+                maxsum = Math.Max(maxsum, winsum);
+                
+                if((char.ToLower(val[left]) == 'a' ) || ( char.ToLower(val[left]) == 'e' ) || (char.ToLower(val[left]) == 'i' ) || (char.ToLower(val[left]) == 'o' ) || (char.ToLower(val[left]) == 'u' ))
+                    vowels.Dequeue(); 
+                       
+                left++;
+            }
+        }
+        
+        Console.WriteLine(maxsum);
+    }
+}
