@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+public class FindNegativeNumInEachK
+{
+    public static void Main(string[] args)
+    {
+        int[] arr = {12,-1,-7,8,-15,30,16,28};
+        int k =3, left = 0;
+        
+        Queue<int> negatives = new Queue<int>();
+        for(int right = 0 ; right < arr.Length; right++)
+        {
+            if(arr[right] < 0)
+                negatives.Enqueue(arr[right]);
+                
+            if(right - left +1 == k)
+            {
+                if(negatives.Count > 0)
+                    Console.WriteLine(negatives.Peek());
+                else
+                    Console.WriteLine("0");
+                
+                if(arr[left] < 0)
+                    negatives.Dequeue();    
+                left++;
+            }
+        }
+    }
+}
