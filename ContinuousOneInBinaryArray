@@ -1,0 +1,23 @@
+using System;
+
+public class ContinuousOneInBinaryArray
+{
+    public static void Main(string[] args)
+    {
+        
+        int[] arr = {1,1,0,1,1,1};
+        int winContCount = 0, count =0;
+        for(int right = 0; right < arr.Length; right++)
+        {
+            if(arr[right] == 1)
+            {
+                count++;
+                winContCount = Math.Max(winContCount, count);
+            }
+            else
+                count = 0;
+        }
+        
+        Console.WriteLine (winContCount);
+    }
+}
