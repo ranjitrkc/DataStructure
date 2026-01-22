@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+
+public class AnagramOfTwoStrings
+{
+    public static void Main(string[] args)
+    {
+        string s1 = "ab", s2 = "eidbaooo";
+        Dictionary<char, int> freq = new Dictionary<char, int>();
+        int left = 0, count =0, k=0;
+        foreach(char s in s1)
+        {
+            if(freq.ContainsKey(s))
+                freq[s]++;
+            else
+                freq[s] = 1;
+        }
+        
+        k = freq.Count;
+        count = freq.Count;
+      
+        //then check s2 by shrink and expanding the window 
+        for(int right = 0; right < s2.Length; right++)
+        {
+            if(freq.ContainsKey(s2[right]))
+            {
+                freq[s2[right]]--;
+                if(freq[s2[right]] == 0)
+                    count--;
+            }
+            
+            if(right-left+1 > s1.Length)
+            {
+                if(freq.ContainsKey(s2[left]))
+                {
+                    if(freq[s2[left]] == 0)
+                        count++;
+                    freq[s2[left]]++;
+                }
+                left++;
+            }
+            //if matches then it is anagram else not
+            if(count ==0 )
+            {
+                Console.WriteLine("Anagram");
+                return;
+            }
+        }
+         
+        Console.WriteLine("NOT Anagram");
+        
+
+    }
+}
