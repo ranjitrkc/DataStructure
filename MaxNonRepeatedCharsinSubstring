@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+
+public class MaxNonRepeatedCharsinSubstring
+{
+    public static void Main(string[] args)
+    {
+        string s ="bbbbbbabcd";
+        int left =0, maxLen =0;
+        //dynamic size window
+        HashSet<char> freq = new HashSet<char>();
+        //increase the window length - till it is not having repeated char 
+        for(int right =0; right < s.Length; right++)
+        {
+            //get the max window length 
+            while(freq.Contains(s[right]))
+            {
+                freq.Remove(s[left]);
+                left++;
+            }
+            freq.Add(s[right]);
+            maxLen = Math.Max(maxLen, (right-left+1));
+        }
+        
+        Console.WriteLine(maxLen);
+    }
+
+}
