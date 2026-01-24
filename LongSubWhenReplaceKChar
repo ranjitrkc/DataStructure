@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+
+public class LongSubWhenReplaceKChar
+{
+    public static void Main(string[] args)
+    {
+        string s = "AABABBA";
+        int k = 1, maxfreq =0, left = 0, result = 0;
+        Dictionary<char, int> freq = new Dictionary<char, int>();
+
+        for(int right =0; right < s.Length; right++)
+        {
+            if(freq.ContainsKey(s[right]))
+                freq[s[right]]++;
+            else
+                freq[s[right]] = 1;
+                
+            maxfreq = Math.Max(maxfreq, freq[s[right]]);
+
+            //(right - left + 1) is the window length
+            while((right - left + 1) - maxfreq > k)
+            {
+                freq[s[left]]--;
+                left++;
+                
+            }
+            result = Math.Max(result, (right - left + 1));
+            
+        }
+        
+        Console.WriteLine(result);
+    }
+}
