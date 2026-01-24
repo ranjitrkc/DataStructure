@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+
+public class MaxVowelsSubsString
+{
+    public static void Main(string[] args)
+    {
+        HashSet<char> vowels = new HashSet <char>{'a' , 'e' , 'i' , 'o' , 'u'};
+        string s = "abciiidef";
+        int k = 3, left =0, maxLen = 0, vowelcount =0;
+        
+        for(int right =0; right< s.Length; right++)
+        {
+            if(vowels.Contains(s[right]))
+            {
+                vowelcount++;
+            }
+            if((right-left+1) == k)
+            {
+                maxLen = Math.Max(maxLen, vowelcount);
+                if(vowels.Contains(s[left]))
+                {
+                    vowelcount--;
+                }
+                
+                left++;
+            }
+        }
+        Console.WriteLine(maxLen);
+    }
+}
