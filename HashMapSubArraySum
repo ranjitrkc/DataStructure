@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+
+public class HashMapSubArraySum
+{
+    public static void Main(string[] args)
+    {
+        int[] arr = {1,2,3};
+        int k=3, count =0, currentSum =0 ;
+        Dictionary<int, int> map = new Dictionary<int,int>();
+        //Initialization
+        map[0] =1;
+        for(int i =0; i< arr.Length; i++)
+        {
+            currentSum += arr[i];
+            if(map.ContainsKey(currentSum-k))
+                count+= map[currentSum-k];
+                
+            if(map.ContainsKey(currentSum))
+            {
+                map[currentSum]++;
+            }                
+            else
+            {
+                map[currentSum] = 1;
+            }
+        }
+        Console.WriteLine("The sum of subArray with " + k + " is : " + count);
+    }
+}
