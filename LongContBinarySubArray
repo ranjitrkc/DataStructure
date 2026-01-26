@@ -1,0 +1,27 @@
+using System;
+using System.Collections.Generic;
+
+public class LongContBinarySubArray
+{
+    public static void Main(string[] args)
+    {
+        int[] nums = {0,1,0,1,1,0};
+        int currentSum = 0, maxLen = 0;
+        Dictionary<int, int> map= new Dictionary<int, int>();
+        map[0]= -1;
+        for(int i = 0; i<nums.Length; i++)
+        {
+            if(nums[i] == 0)
+                currentSum += -1;
+            else
+                currentSum += 1;
+             
+             if(map.ContainsKey(currentSum))
+                maxLen = Math.Max(maxLen, i - map[currentSum]);
+             
+             else
+                map[currentSum] = i;
+        }
+        Console.WriteLine(maxLen);
+    }
+}
