@@ -1,0 +1,25 @@
+using System;
+
+public class ProdAllElements
+{
+    public static void Main(string[] args)
+    {
+        int[] nums = {1,2,3,4};
+        int[] answer = new int[4];
+        for(int i = 0 ; i<nums.Length; i++)
+        {
+            answer[i] =  1;
+            for(int j =0; j<nums.Length; j++ )
+            {
+                if(j != i)
+                {
+                    if(j <= nums.Length -1)
+                        answer[i] = answer[i] * nums[j] ;
+                }
+            }
+        }
+        
+        for(int k = 0; k< answer.Length; k++)
+            Console.WriteLine(answer[k]);
+    }
+}
